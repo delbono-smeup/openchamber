@@ -2473,7 +2473,10 @@ const ChatInputComponent: React.FC<ChatInputProps> = ({
         // The pill exists to buy screen back from the soft keyboard. A tablet
         // has the room regardless, and with a hardware keyboard there is no
         // soft keyboard to buy it back from — keep the real composer up.
-        alwaysExpanded: hasHardwareKeyboard || isTabletLayout,
+        // Keep one mounted, always-visible editor on phones. The old pill
+        // saved a little space but made the draft disappear during iOS
+        // keyboard transitions and forced a second focus choreography.
+        alwaysExpanded: isMobile || hasHardwareKeyboard || isTabletLayout,
         holders: {
             controlsPanelOpen: Boolean(mobileControlsPanel),
             attachMenuOpen: mobileAttachMenuOpen,
@@ -2527,7 +2530,10 @@ const ChatInputComponent: React.FC<ChatInputProps> = ({
     useMobileViewportPin({
         isMobile,
         isFullscreen: isMobileExpanded,
-        isDraftScreen: newSessionDraftOpen,
+        // The redesigned mobile shell uses normal flex flow. Do not apply the
+        // legacy browser fixed-position pin inside it; interactive-widget and
+        // the separated composer slot provide the viewport boundary.
+        isDraftScreen: newSessionDraftOpen && !isMobile,
         isFocused: mobileTextareaFocused,
         formRef: composerFormRef,
         editorRef: composerRef,

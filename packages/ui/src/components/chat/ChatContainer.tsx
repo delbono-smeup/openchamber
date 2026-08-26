@@ -1430,14 +1430,16 @@ export const ChatContainer: React.FC<ChatContainerProps> = ({
 
 	return (
 		<div ref={workStatusRowRef} className="flex h-full min-h-0 bg-background">
-		<div data-composer-bound className="relative flex min-w-0 flex-1 flex-col h-full bg-background">
+		<div data-composer-bound className="oc-mobile-chat-column relative flex min-w-0 flex-1 flex-col h-full bg-background">
 			{returnToParentButton}
-			{sessionSurface}
+			<div className="oc-mobile-session-surface min-h-0 flex-1">
+				{sessionSurface}
+			</div>
 
             <div
                 ref={composerSlotRef}
                 className={cn(
-                    'relative z-10 flex min-h-0',
+                    'oc-mobile-composer-slot relative z-10 flex min-h-0 shrink-0',
                     isDesktopExpandedInput
                         ? 'flex-1 min-h-0 bg-background'
                         : draftLayoutVisible && !useCompactDraftLayout
