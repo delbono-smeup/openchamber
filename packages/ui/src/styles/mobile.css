@@ -793,11 +793,35 @@
 
   :root.mobile-pointer:not(.desktop-runtime) .oc-mobile-redesign .oc-mobile-session-surface {
     position: relative;
+    display: flex;
+    min-height: 0;
+    flex: 1 1 0%;
+    flex-direction: column;
     overflow: hidden;
   }
 
   :root.mobile-pointer:not(.desktop-runtime) .oc-mobile-redesign .oc-mobile-session-surface > * {
     min-height: 0;
+    min-width: 0;
+  }
+
+  /* The real transcript scroller is created by MessageList. Keep the
+     surrounding shell from becoming a competing scroll owner, while giving
+     the conversation the same breathing room as a Tailwind mobile surface. */
+  :root.mobile-pointer:not(.desktop-runtime) .oc-mobile-redesign .oc-mobile-session-surface .chat-scroll {
+    scrollbar-gutter: stable;
+    padding-inline: 0.75rem;
+    padding-top: 0.5rem;
+  }
+
+  :root.mobile-pointer:not(.desktop-runtime) .oc-mobile-redesign .oc-mobile-session-surface .typography-markdown {
+    font-size: 1rem !important;
+    line-height: 1.6;
+  }
+
+  :root.mobile-pointer:not(.desktop-runtime) .oc-mobile-redesign .oc-mobile-session-surface .typography-code {
+    font-size: 0.875rem !important;
+    line-height: 1.55;
   }
 
   :root.mobile-pointer:not(.desktop-runtime) .oc-mobile-redesign .oc-mobile-composer-slot {

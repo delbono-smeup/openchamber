@@ -1432,7 +1432,7 @@ export const ChatContainer: React.FC<ChatContainerProps> = ({
 		<div ref={workStatusRowRef} className="flex h-full min-h-0 bg-background">
 		<div data-composer-bound className="oc-mobile-chat-column relative flex min-w-0 flex-1 flex-col h-full bg-background">
 			{returnToParentButton}
-			<div className="oc-mobile-session-surface min-h-0 flex-1">
+			<div className="oc-mobile-session-surface relative flex min-h-0 flex-1 flex-col overflow-hidden">
 				{sessionSurface}
 			</div>
 
